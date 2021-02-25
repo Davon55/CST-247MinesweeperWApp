@@ -13,10 +13,19 @@ namespace MinesweeperApp.Services.Business
         
             SecurityDAO daoService = new SecurityDAO();
 
-            public bool Authenticate(UserModel user)
-            {
+        public bool Authenticate(UserModel user)
+        {
             return daoService.FindByUser(user);
-            }
+        }
+
+        public List<RegisterModel> findAll()
+        {
+            return daoService.FindAll();
+        }
+        public RegisterModel getById(int id)
+        {
+            return daoService.getById(id);
+        }
         
     }
 }

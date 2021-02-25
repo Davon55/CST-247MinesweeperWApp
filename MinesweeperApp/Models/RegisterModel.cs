@@ -8,6 +8,25 @@ namespace MinesweeperApp.Models
 {
     public class RegisterModel
     {
+        public RegisterModel()
+        {
+        }
+
+        public RegisterModel(int id, string firstName, string lastName, string sex, int age, string state, string email, string address, string username, string password)
+        {
+            this.Id = id;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.sex = sex;
+            this.age = age;
+            this.state = state;
+            this.email = email;
+            this.address = address;
+            this.username = username;
+            this.password = password;
+        }
+
+        public int Id { get; set; }
         [Required(ErrorMessage = "Enter your First Name")]
         [Display(Name ="First Name")]
         public string firstName { get; set; }
