@@ -15,18 +15,30 @@ namespace MinesweeperApp.Controllers
             return View("Login");
         }
         //pass a user object to the login
+        [HttpPost]
         public IActionResult Login(UserModel userModel)
         {
-            SecurityService securityService = new SecurityService();
-            Boolean success = securityService.Authenticate(userModel);
+            try
+            {
+                //validate input
+                if (!ModelState.IsValid)
+                    return View("Login");
 
-            if (success)
-            {
-                return View("LoginSuccess",userModel);
+                SecurityService securityService = new SecurityService();
+                Boolean success = securityService.Authenticate(userModel);
+
+                if (success)
+                {
+                    return View("LoginSuccess", userModel);
+                }
+                else
+                {
+                    return View("LoginFailure", userModel);
+                }
             }
-            else
+            catch(Exception e)
             {
-                return View("LoginFailure", userModel);
+                return View("LoginFailure");
             }
         }
     }

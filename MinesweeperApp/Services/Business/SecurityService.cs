@@ -22,9 +22,9 @@ namespace MinesweeperApp.Services.Business
         {
             return daoService.FindAll();
         }
-        public RegisterModel getById(int id)
+        public bool create(RegisterModel user)
         {
-            return daoService.getById(id);
+            return daoService.create(user);
         }
         
     }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minesweeper
+namespace MinesweeperApp.MinesweeperGame
 {
    public  class Board
     {
@@ -51,7 +51,22 @@ namespace Minesweeper
                 
             }
         }
-          
+        public void floodFill(int row, int col)
+        {
+
+
+            
+            if (isThisSquareSafe(row + 1, col))
+                floodFill(row + 1, col);
+            if (isThisSquareSafe(row - 1, col))
+                floodFill(row - 1, col);
+            if (isThisSquareSafe(row, col + 1))
+                floodFill(row, col + 1);
+            if (isThisSquareSafe(row, col - 1))
+                floodFill(row, col - 1);
+
+        }
+
         // A method to the elements do not go out of bounds/outside the grid
         public bool isThisSquareSafe( int row, int col)
         {

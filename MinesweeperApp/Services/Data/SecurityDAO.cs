@@ -50,47 +50,36 @@ namespace MinesweeperApp.Services.Data
             }
             return success;
         }
-        public RegisterModel getById(int Id)
+        public bool create(RegisterModel user)
         {
             
 
             // access the database
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string queryString = "SELECT * FROM dbo.Users WHERE Id =@Id";
+                bool success;
+
+                string queryString = "INSERT INTO dbo.Users (firstName, lastName, sex, age, state, email, address username, password) VALUES (@firstName, @lastName, @sex, @age, @state, @email, @address, @username @password)";
 
                
 
-                // creat the command and parameter objects
+                // create the command and parameter objects
                 SqlCommand command = new SqlCommand(queryString, connection);
 
-                command.Parameters.Add("@Id,", System.Data.SqlDbType.Int).Value = Id;
+                command.Parameters.Add("@Id,", System.Data.SqlDbType.Int).Value = user.Id;
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                RegisterModel register = new RegisterModel();
+               
                 if (reader.HasRows)
                 {
-                    while(reader.Read())
-                    {
-                        // create a new user object. add it to the list to return 
-                       
-                        register.Id = reader.GetInt32(0);
-                        register.firstName = reader.GetString(1);
-                        register.lastName = reader.GetString(2);
-                        register.sex = reader.GetString(3);
-                        register.age = reader.GetInt32(4);
-                        register.state = reader.GetString(5);
-                        register.email = reader.GetString(6);
-                        register.address = reader.GetString(7);
-                        register.username = reader.GetString(8);
-                        register.password = reader.GetString(9);
-
-                       
-
-                    }
+                    success = true;
                 }
-                return register;
+                else
+                {
+                    success = false;
+                }
+                return success;
             }
             
         }

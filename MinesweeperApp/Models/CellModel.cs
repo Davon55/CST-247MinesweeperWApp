@@ -17,7 +17,7 @@ namespace MinesweeperApp.Models
 
        public bool isLive { get; set; }
 
-        public CellModel( int x , int y)
+       public CellModel(int x ,int y)
         {
             row = x;
             column = y;
