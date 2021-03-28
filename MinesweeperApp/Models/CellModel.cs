@@ -16,6 +16,7 @@ namespace MinesweeperApp.Models
        public bool isVisited { get; set; }
 
        public bool isLive { get; set; }
+        public string Id { get; set; }
 
        public CellModel(int x ,int y)
         {
@@ -30,6 +31,7 @@ namespace MinesweeperApp.Models
             isVisited = false;
             isLive = false;
             theNumberOfNeighbors = 0;
+            Id = null;
         }
     }
 }
